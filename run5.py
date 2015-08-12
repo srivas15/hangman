@@ -68,8 +68,10 @@ def play():
 	global mainList
 	global chances
 	global main
+	print 'movie is ', main
 	if(request.method == 'GET'):
 		print 'gget'
+		print 'get and chances are ', chances
 		url = 'http://www.imdb.com/chart/top'
         	html = urllib2.urlopen(url).read()
         	print 'urlib done'
@@ -84,12 +86,15 @@ def play():
 		print 'found movie'
         	main = random.choice(allMovies)
         	main = main.lower()
+		print 'movie when i found it ', main
         	mainList = list(main)
 		chances = 5
 		gameWon = False
 		#return render_template('play.html', chances=chances)
 	elif(request.method == 'POST'):
 		print 'post'
+		print 'newalpha is ', newAlpha
+		print 'post and chances are ', chances
 		#test = test+test
 		gameWon = True
 		newAlpha = request.form['newAlpha']
@@ -109,6 +114,7 @@ def play():
 		else:
 			movie = movie+'*'
 			gameWon = False
+	print 'everything done lets see ', movie
 	if gameWon:
 		return render_template('won.html', chances=chances, movie=movie)
 	if chances == 0:
