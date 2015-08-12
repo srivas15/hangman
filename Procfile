@@ -1,1 +1,1 @@
-web: gunicorn run5:app --log-file=-
+myworker:  python run.py
