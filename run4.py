@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-'''
+
 import requests
 import urllib2
 from bs4 import BeautifulSoup
@@ -12,7 +12,7 @@ firstTime = True
 mainList = [];
 alphabetList = ['a', 'e', 'i', 'o', 'u', ' ', '0', '1', '2','3','4','5','6','7','8','9']
 main = "";
-'''
+
 @app.route('/')
 @app.route('/index')
 def index():
