@@ -25,7 +25,6 @@ def setup():
 	global main
 
 	firstTime = True
-	#print 'in setup'
 	url = 'http://www.imdb.com/chart/top'
 	html = urllib2.urlopen(url).read()
 	soup = BeautifulSoup(html, "html.parser")
@@ -42,7 +41,7 @@ def setup():
 	mainList = list(main)
 
 	return render_template('setup.html')
-'''
+
 @app.route('/play.html', methods=['POST'])
 def play():
 	global firstTime
@@ -78,7 +77,7 @@ def play():
 	if chances == 0:
 		return render_template('lost.html', chances=chances, movie=main)
 	return render_template('play.html', chances=chances, movie=movie)
-'''
+
 if __name__ == '__main__':
     app.run(debug=True)
 
