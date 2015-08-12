@@ -1,1 +1,1 @@
-web: gunicorn run5:app --log-file=-
+web: python run5.py
