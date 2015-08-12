@@ -85,12 +85,12 @@ def play():
         	main = random.choice(allMovies)
         	main = main.lower()
         	mainList = list(main)
-		
 		chances = 5
 		gameWon = False
 		#return render_template('play.html', chances=chances)
 	elif(request.method == 'POST'):
 		print 'post'
+		#test = test+test
 		gameWon = True
 		newAlpha = request.form['newAlpha']
 		if newAlpha in mainList:
