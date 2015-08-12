@@ -17,7 +17,7 @@ main = "";
 @app.route('/index')
 def index():
     	return render_template('index.html')
-'''
+
 @app.route('/setup.html')
 def setup():
 	global firstTime
@@ -31,7 +31,6 @@ def setup():
 	soup = BeautifulSoup(html, "html.parser")
 
 	allMovies = []
-	print 'will start to find'
 	movies = soup.find_all("td", {"class":"titleColumn"})
 	for movie in movies:
 		movieName = movie.find("a");
@@ -43,7 +42,7 @@ def setup():
 	mainList = list(main)
 
 	return render_template('setup.html')
-
+'''
 @app.route('/play.html', methods=['POST'])
 def play():
 	global firstTime
