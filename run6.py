@@ -39,18 +39,28 @@ def play():
 	'''
 	#global mainList
 	#global chances
-	global alphabetList
-	print type(alphabetList)
+	#global alphabetList
+	#print type(alphabetList)
 	chances = request.form.get('chances', 5)
 	print chances
 	chances = int(chances)
+	alphabetList = request.form.get('alphabetList', ['-', 'a', 'e', 'i', 'o', 'u', ' ', '0', '1', '2','3','4','5','6','7','8','9'])
+	#print 'alphabetList before ', alphabetList, type(alphabetList)
+	if (type(alphabetList) == "<type 'list'>"):
+		print 'do nothing'
+	else:
+		print 'do something'
+		alphabetList = list(alphabetList)
+	#print 'alphabetList after ', alphabetList, type(alphabetList)
 	mainList = request.form.get('mainList', [])
+	#print 'mainlist before ', mainList, type(mainList)
 	#print 'mainList is ', mainList, type(mainList)
 	if (mainList == []):
 		print 'do nothing'
 	else:
 		print 'do something'
 		mainList = list(mainList)
+	#print 'mainlist after ', mainList, type(mainList)
 	'''
 		mainList = mainList.strip('[]')
 		#mainList = mainList.split(',')
@@ -131,7 +141,9 @@ def play():
 	if chances == 0:
 		return render_template('lost.html', chances=chances, movie=main)
 	str1 = ''.join(mainList)
-	return render_template('play.html', chances=chances, movie=movie, mainList=str1)
+	str2 = ''.join(alphabetList)
+	#print 'str1 = ', str1, 'str2 = ', str2
+	return render_template('play.html', chances=chances, movie=movie, mainList=str1, alphabetList=str2)
 
 if __name__ == '__main__':
     app.run(debug=True)
