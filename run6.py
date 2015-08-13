@@ -59,6 +59,7 @@ def play():
 	elif(request.method == 'POST'):
 		gameWon = True
 		newAlpha = request.form['newAlpha']
+		newAlpha = newAlpha.lower()
 		if newAlpha in mainList:
 			alphabetList.append(newAlpha)
 		else:
