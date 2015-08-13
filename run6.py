@@ -37,14 +37,31 @@ def play():
 		chances = int(chances)
 		firstTime = False
 	'''
-	global mainList
+	#global mainList
 	#global chances
-	#global main
+	global alphabetList
+	print type(alphabetList)
 	chances = request.form.get('chances', 5)
 	print chances
 	chances = int(chances)
-	#mainList = request.form.get('mainList', [])
-	#print 'mainList is ', mainList
+	mainList = request.form.get('mainList', [])
+	#print 'mainList is ', mainList, type(mainList)
+	if (mainList == []):
+		print 'do nothing'
+	else:
+		print 'do something'
+		mainList = list(mainList)
+	'''
+		mainList = mainList.strip('[]')
+		#mainList = mainList.split(',')
+		mainList = mainList.replace("u'", "")
+		mainList = mainList.replace("'", "")
+		mainList = " "+mainList
+		print 'mainlist IS ', mainList
+		mainList = mainList.split(',')
+		mainList = [m.replace(' ', '', 1) for m in mainList]
+		print mainList, type(mainList)
+	'''	
 	#movie = ""
 	if(request.method == 'GET'):
 		print 'get'
@@ -90,21 +107,31 @@ def play():
 	#movie = request.form.get('movie', '')
 	#print 'movie is ', movie
 	movie = ""
+	#print 'movie before entering loop is ', movie
+	#print 'mainList before entering loop is ', mainList
+	#print 'alphabetList before entering loop is ', alphabetList
 	for alphabet in mainList:
+		#print 'alphabaet in mainlist :', alphabet
 		if alphabet in alphabetList:
+		#	print 'in alphabetList'
 			if(alphabet == ' '):
+		#		print 'isspace'
 				movie = movie + '   '
 			else:
+		#		print 'is not space'
 				movie = movie+alphabet
 		else:
+		#	print 'not in alphabetList'
 			movie = movie+'*'
 			gameWon = False
+		#print 'movie is ', movie
 	#print 'everything done lets see ', movie
 	if gameWon:
 		return render_template('won.html', chances=chances, movie=movie)
 	if chances == 0:
 		return render_template('lost.html', chances=chances, movie=main)
-	return render_template('play.html', chances=chances, movie=movie)
+	str1 = ''.join(mainList)
+	return render_template('play.html', chances=chances, movie=movie, mainList=str1)
 
 if __name__ == '__main__':
     app.run(debug=True)
